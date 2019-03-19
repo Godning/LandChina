@@ -1,13 +1,15 @@
 # coding=utf-8
 import time
 import datetime
-import mysql.connector
+# import mysql.connector
 import re
 import redis
 from bs4 import BeautifulSoup
 from selenium import webdriver
 # r = redis.Redis(host='127.0.0.1', port=6379,db=0)#host自己的ip地址
-driver = webdriver.Chrome()  # 打开火狐浏览器
+options = webdriver.FirefoxOptions()
+options.set_headless()
+driver = webdriver.Firefox(firefox_options=options)  # 打开火狐浏览器
 driver.get('http://www.landchina.com/default.aspx?tabid=263&ComName=default')  # 打开界面
 i = 1
 l = 0
@@ -79,7 +81,7 @@ def llq_main(start,end):
     driver.find_element_by_id('TAB_QueryConditionItem256').click()
     driver.execute_script("document.getElementById('TAB_queryTblEnumItem_256_v').setAttribute('type', 'text');")
     driver.find_element_by_id('TAB_queryTblEnumItem_256_v').clear()
-    driver.find_element_by_id('TAB_queryTblEnumItem_256_v').send_keys('13')
+    driver.find_element_by_id('TAB_queryTblEnumItem_256_v').send_keys('37')
     driver.find_element_by_id('TAB_QueryButtonControl').click()  # 查询操作
     page_zh(i,l)
 
